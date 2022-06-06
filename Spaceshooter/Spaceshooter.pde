@@ -7,13 +7,14 @@ Ship myShip;
 
 boolean upkey, downkey, leftkey, rightkey, spacekey;
 
-
+PImage stapler;
 
 void setup() {
-  size(600,600);
+  fullScreen();
   imageMode(CENTER);
   upkey = downkey = leftkey = rightkey = spacekey = false;
   myShip = new Ship();
+  stapler = loadImage( "stapler.png");
 }
 
 void draw() {

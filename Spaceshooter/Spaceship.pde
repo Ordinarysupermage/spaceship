@@ -1,14 +1,13 @@
-
 class Ship extends GameObject {
   
-  PVector directiony, directionx;
+  PVector direction;
 
   Ship() {
     lives = 3;
     location = new PVector(width/2, height/2);
     velocity = new PVector(0, 0);
-    directiony = new PVector(0, -0.1 );
-    directionx = new PVector(-0.1, 0);
+    direction = new PVector(0, -0.1 );
+    
   }
 
   void show() {
@@ -16,8 +15,8 @@ class Ship extends GameObject {
     translate(location.x, location.y);
     noFill();
     stroke(255);
-    rotate( radians(-90));
-    triangle(-25, -12.5, -25, 12.5, 25, 0);
+    rotate( radians(180));
+    image(stapler, 0, 0);
     popMatrix();
   }
 
@@ -25,12 +24,15 @@ class Ship extends GameObject {
     
     super.act();
 
-    if ( velocity.x > 3 && velocity.x < - 3) velocity.x *=-1;
-    if ( velocity.y >3 && velocity.y < -3) velocity.y *=-1;
-    if (upkey) velocity.add (directiony.y /5);
-    if (downkey) velocity.sub (direction.y /5);
-    if (leftkey) velocity.add(directionx.x /5);
-    if (rightkey) velocity.sub(directionx.x /5);
+    //if ( velocity.x > 3 && velocity.x < - 3) velocity.x *=-1;
+    //if ( velocity.y > 3 && velocity.y < -3) velocity.y *=-1;
+    float v = min(velocity.mag(), 3);
+    velocity.setMag(v);
+    
+    if (upkey) velocity.add (direction);
+    if (downkey) velocity.sub (direction);
+    if (leftkey) velocity.add(direction);
+    if (rightkey) velocity.sub(direction);
     
 
     //if (!upkey) velocity.add(0, -.5, 0);
