@@ -10,7 +10,7 @@ final int game = 2;
 final int pause = 3;
 final int gameover = 4;
 
-boolean upkey, downkey, leftkey, rightkey, spacekey;
+boolean upkey, downkey, leftkey, rightkey, spacekey, mousemode;
 
 PImage stapler, paperclip;
 
@@ -24,7 +24,7 @@ void setup() {
   
   mode  = game;
   
-  upkey = downkey = leftkey = rightkey = spacekey = false;
+  upkey = downkey = leftkey = rightkey = spacekey = mousemode = false;
   stapler = loadImage( "stapler.png");
   paperclip = loadImage( "paperclip.png");
   

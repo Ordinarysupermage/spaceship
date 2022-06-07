@@ -7,8 +7,8 @@ class Bullet extends GameObject {
     y = player1.y;
     vx = 0;
     vy = -10;
-    sizew = 50;
-    sizeh = 100;
+    sizew = 10;
+    sizeh = 20;
     c = 225;
     lives = 1;
   }
@@ -16,13 +16,13 @@ class Bullet extends GameObject {
   void act() {
     //super.act(); 
     
-    y +=2;
+    y -=5;
     //if (x < 0 || x > width || y < 0 || y > height) lives = 0;
   }
 
   void show () {
     //println( x + "    " + y);
-    image( paperclip, x, y, sizew, sizeh);
+    image( paperclip, x, y-50, sizew, sizeh);
 
   }
 }
