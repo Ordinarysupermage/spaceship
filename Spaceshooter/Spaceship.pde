@@ -1,44 +1,38 @@
 class Ship extends GameObject {
-  
-  PVector direction;
+
+  float sizew, sizeh;
+  int lives;
 
   Ship() {
+    x = 0;
+    y = 0;
+    vx = 0;
+    vy= 0;
+    sizew = 100;
+    sizeh = 200;
+    c = #FF0000;
     lives = 3;
-    location = new PVector(width/2, height/2);
-    velocity = new PVector(0, 0);
-    direction = new PVector(0, -0.1 );
-    
-  }
-
-  void show() {
-    pushMatrix();
-    translate(location.x, location.y);
-    noFill();
-    stroke(255);
-    rotate( radians(180));
-    image(stapler, 0, 0);
-    popMatrix();
   }
 
   void act () {
-    
     super.act();
+    if (upkey) vy = 5;
+    if (downkey) vy = -5;
+    if (leftkey) vx = 5;
+    if (rightkey) vx = -5;
+    if (spacekey) objects.add(new Bullet());
+    if (!upkey && !downkey) vy *= 0.9;
+    if (!leftkey && !rightkey) vx *= 0.9;
+  }
 
-    //if ( velocity.x > 3 && velocity.x < - 3) velocity.x *=-1;
-    //if ( velocity.y > 3 && velocity.y < -3) velocity.y *=-1;
-    float v = min(velocity.mag(), 3);
-    velocity.setMag(v);
-    
-    if (upkey) velocity.add (direction);
-    if (downkey) velocity.sub (direction);
-    if (leftkey) velocity.add(direction);
-    if (rightkey) velocity.sub(direction);
-    
+  void show() {
 
-    //if (!upkey) velocity.add(0, -.5, 0);
-    //if (!downkey) velocity.sub (0, -.5, 0);
-    //if (!leftkey) velocity.add (-0.5, 0, 0);
-    //if (!rightkey) velocity.add(0.5, 0, 0);
-    
+    fill(c);
+    pushMatrix();
+    translate(width/2, height/2);
+    rotate(radians(180));
+    image(stapler, x, y, sizew, sizeh);
+    popMatrix();
+
   }
 }
