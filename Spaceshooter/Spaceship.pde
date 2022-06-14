@@ -2,6 +2,7 @@ class Ship extends GameObject {
 
   float sizew, sizeh;
   int lives;
+  int cooldown, threshold;
 
   Ship() {
     x = width/2;
@@ -12,30 +13,31 @@ class Ship extends GameObject {
     sizeh = 100;
     c = #FF0000;
     lives = 3;
+    threshold = 30;
+    cooldown = threshold;
   }
 
   void act () {
     super.act();
+
+    cooldown++;
+
     if (upkey) vy = -5;
     if (downkey) vy = 5;
     if (leftkey) vx = -5;
     if (rightkey) vx = 5;
-    if (spacekey) objects.add(new Bullet());
+    if (spacekey && cooldown >= threshold ) {
+      objects.add(new Bullet());
+      cooldown = 0;
+    }
     if (!upkey && !downkey) vy *= 0.9;
     if (!leftkey && !rightkey) vx *= 0.9;
-    if (mousemode == true) {
-      x = mouseX;
-      y = mouseY;
-    }
   }
-
+    
+    //object.s
   void show() {
 
-    fill(c);
-    pushMatrix();
-    translate(x, y);
-    rotate(radians(180));
-    image(stapler, 0, 0, sizew, sizeh);
-    popMatrix();
+    fill(c); 
+    image(stapler, x, y, sizew, sizeh);
   }
 }

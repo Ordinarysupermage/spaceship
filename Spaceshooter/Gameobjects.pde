@@ -1,10 +1,11 @@
 class GameObject {
 
   float x, y, vx, vy, size;
-  int lives;
+  int lives, w , h;
   color c;
   
   GameObject() {
+    
   }
 
   void act() {
@@ -12,5 +13,12 @@ class GameObject {
     y += vy;
   }
   void show(){
+  }
+  
+  boolean collidingwith(Gameobjects g) {
+    //collision detection
+    
+    //return  true OR return false
+   
   }
 }
