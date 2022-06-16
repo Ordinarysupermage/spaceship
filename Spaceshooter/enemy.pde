@@ -2,6 +2,7 @@ int zergHit;
 
 class Zerg extends GameObject {
 
+  int hit;
 
   Zerg() {
     x = random( 30, width - 30);
@@ -22,7 +23,7 @@ class Zerg extends GameObject {
     }
 
     int i = 0;
-    while ( i < obejct.size()) {
+    while ( i < objects.size()) {
       GameObject bullet = objects.get(i);
       if (bullet instanceof Bullet) {
         if ( collidingwith(bullet)) {
@@ -40,9 +41,9 @@ class Zerg extends GameObject {
     image(zerg, x, y, w, h);
   }
 
-  boolean collidingwith(bullet) {
+  boolean collidingwith(GameObject bullet) {
     //collision detection
-    if ( dist( Zerg.x, Zerg.y, Bullet.x, Bullet.y) < 70) {
+    if ( dist( x, y, bullet.x, bullet.y) < 70) {
     return true;
     } else return false;
   }
