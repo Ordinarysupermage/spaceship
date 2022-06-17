@@ -28,9 +28,11 @@ class Zerg extends GameObject {
       if (bullet instanceof Bullet) {
         if ( collidingwith(bullet)) {
           //remove enemy???
+          lives = 0;
+          bullet.lives = 0;
         }
       }
-
+     
 
       i++;
     }
@@ -41,10 +43,5 @@ class Zerg extends GameObject {
     image(zerg, x, y, w, h);
   }
 
-  boolean collidingwith(GameObject bullet) {
-    //collision detection
-    if ( dist( x, y, bullet.x, bullet.y) < 70) {
-    return true;
-    } else return false;
-  }
+  
 }

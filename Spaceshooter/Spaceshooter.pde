@@ -17,7 +17,7 @@ boolean elementary, secondary, undergrad, master , phd;
 color red = #FF0000;
 color green = #00FF00;
 
-boolean upkey, downkey, leftkey, rightkey, spacekey;
+boolean upkey, downkey, leftkey, rightkey, spacekey, cheat;
 
 PImage stapler, paperclip, zerg;
 
@@ -38,13 +38,12 @@ void setup() {
   paperclip = loadImage( "paperclip.png");
   zerg = loadImage( "zerg.png");
   
-  z1 = new Zerg();
-  z2 = new Zerg();
-  z3 = new Zerg();
+  
   
   objects = new ArrayList<GameObject>();
   player1 = new Ship();
   objects.add(player1);
+ 
 
 }
 

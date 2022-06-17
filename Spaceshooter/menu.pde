@@ -127,6 +127,6 @@ void menuSelect() {
     phd = true;
   }
   if ( mouseX > 75 && mouseX < 225 && mouseY > 662 && mouseY < 738) {
-    shopmenu = true;
+    mode = shop;
   }
 }

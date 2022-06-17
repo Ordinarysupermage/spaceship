@@ -2,7 +2,7 @@ class Ship extends GameObject {
 
   float sizew, sizeh;
   int lives;
-  int cooldown, threshold;
+  int cooldown, threshold, thresholdnumber;
 
   Ship() {
     x = width/2;
@@ -13,7 +13,8 @@ class Ship extends GameObject {
     sizeh = 100;
     c = #FF0000;
     lives = 3;
-    threshold = 30;
+    threshold = thresholdnumber;
+    thresholdnumber = 30;
     cooldown = threshold;
   }
 
@@ -32,9 +33,14 @@ class Ship extends GameObject {
     }
     if (!upkey && !downkey) vy *= 0.9;
     if (!leftkey && !rightkey) vx *= 0.9;
+    if (cheat == true) {
+      x = mouseX;
+      y = mouseY;
+      threshold = 0;
+    } else threshold = thresholdnumber;
   }
-    
-    //object.s
+
+  //object.s
   void show() {
 
     fill(c); 

@@ -1,5 +1,7 @@
 void game() {
   
+  if (frameCount % 10 == 0) objects.add(new Zerg());
+  
   objects.add(new Stars());  
   background(0);
   
@@ -16,12 +18,7 @@ void game() {
   }
   player1.show();
   player1.act();
-  z1.show();
-  z1.act();
-  z2.show();
-  z2.act();
-  z3.show();
-  z3.act();
+
   
   
 }
