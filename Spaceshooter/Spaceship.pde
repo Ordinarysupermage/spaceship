@@ -1,32 +1,75 @@
 class Ship extends GameObject {
 
-  float sizew, sizeh;
-  int lives;
-  int cooldown, threshold, thresholdnumber;
+  int live;
+  int thresholdnumber;
 
   Ship() {
     x = width/2;
-    y = height/2;
+    y = 700;
     vx = 0;
     vy= 0;
-    sizew = 50;
-    sizeh = 100;
+    sizew = 30;
+    sizeh = 60;
     c = #FF0000;
-    lives = 3;
+    live = 3;
     threshold = thresholdnumber;
-    thresholdnumber = 30;
+    thresholdnumber = 5;
     cooldown = threshold;
   }
 
   void act () {
     super.act();
-
+    println(live);
     cooldown++;
+    int i = 0;
+    while ( i < objects.size()) {
+      GameObject bullet = objects.get(i);
+      if (bullet instanceof EnemyBulletZerg) {
+        if ( collidingwith(bullet)) {
+          live -= 1;
+          bullet.live = 0;
+        }
+      }
+      
+      if (bullet instanceof EnemyBulletMissile1) {
+        if ( collidingwith(bullet)) {
+          live -=5;
+          bullet.live = 0;
+        }
+        
+      }
+      i++;
+    }
+    
+    
 
-    if (upkey) vy = -5;
-    if (downkey) vy = 5;
-    if (leftkey) vx = -5;
-    if (rightkey) vx = 5;
+
+
+
+    if (upkey) {
+      if ( y > 30)
+        vy = -5;
+      else
+        vy = 0;
+    }
+    if (downkey) {
+      if (y < height -30)
+        vy = 5;
+      else
+        vy = 0;
+    }
+    if (leftkey) {
+      if (x > 20)
+        vx = -5;
+      else
+        vx = 0;
+    }
+    if (rightkey) {
+      if (x < width - 20)
+        vx = 5;
+      else
+        vx = 0;
+    }
     if (spacekey && cooldown >= threshold ) {
       objects.add(new Bullet());
       cooldown = 0;
@@ -43,7 +86,7 @@ class Ship extends GameObject {
   //object.s
   void show() {
 
-    fill(c); 
+    fill(c);
     image(stapler, x, y, sizew, sizeh);
   }
 }
