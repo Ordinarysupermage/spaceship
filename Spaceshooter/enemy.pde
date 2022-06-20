@@ -298,7 +298,7 @@ class Supership extends GameObject {
     }
     
     if (trackingcooldown > trackingthreshold) {
-      objects.add(new EnemyBulletMissile2(-50, player1.y, 5, 0));
+      objects.add(new EnemyBulletMissile2(-50, random( player1.y - 20, player1.y + 20), 15, 0));
       trackingcooldown = 0;
     }
 

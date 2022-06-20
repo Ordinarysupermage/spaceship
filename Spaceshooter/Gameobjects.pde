@@ -31,7 +31,7 @@ class GameObject {
 
   boolean collidingwith(GameObject obj) {
     //collision detection
-    if ( dist( x, y, obj.x, obj.y) < 20) {
+    if ( dist( x, y, obj.x, obj.y) < w/2 + obj.w/2) {
       return true;
     } else return false;
   }
