@@ -26,7 +26,10 @@ void game() {
    objects.add(new Supership());
    phdspawn = true;    
   }
-
+  
+  
+  
+  
   objects.add(new Stars());
   background(0);
 
@@ -43,4 +46,12 @@ void game() {
   }
   player1.show();
   player1.act();
+  if ( medic == true) {
+    if ( player1.mediccooldown > player1.medicthreshold) {
+      textAlign(CENTER, CENTER);
+      textSize(15);
+      fill(255);
+      text("Med bag ready", 100, 100);
+    }
+  }
 }

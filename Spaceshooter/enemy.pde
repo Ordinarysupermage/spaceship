@@ -333,6 +333,10 @@ class Supership extends GameObject {
           live -= 1;
           bullet.live = 0;
           score += 1;
+          if ( live == 0) {
+            gamebeaten = true;
+            mode = gameover;
+          }
         }
       }
 

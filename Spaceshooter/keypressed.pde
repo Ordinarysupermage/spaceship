@@ -10,6 +10,17 @@ void keyPressed() {
   if ( keyCode == 'D') rightkey = true;
   if ( keyCode == 'F') cheat = true;
   if ( keyCode == 'Z') cheat = false;
+  if ( keyCode == 'P') mode = pause;
+  if ( keyCode == 'Q') {
+    if (mode == game && medic == true) {
+      if (player1.mediccooldown > player1.medicthreshold) {
+        if ( player1.live < 30) {
+          player1.live += 2;
+          player1.mediccooldown = 0;
+        }
+      }
+    }
+  }
 }
 
 void keyReleased() {
@@ -27,31 +38,44 @@ void keyReleased() {
 
 void mousePressed() {
   //image(start, width/2, height/2+50, 300, 150);
-
+  if (mode == pause) {
+    pauseClicked();
+  }
   if (mode == menu) {
     menuSelect();
-    
+
     if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 -25 && mouseY < height/2 + 125) {
       startw = 250;
       starth = 125;
-
     }
-    
+
     if ( mouseX > 75 && mouseX < 225 && mouseY > 662 && mouseY < 738) {
       mode = shop;
     }
   }
-  
-  
+
+  if ( mode == shop) {
+    shopselect();
+  }
+
+  if ( mode == gameover) {
+    if ( dist( mouseX, mouseY, 100, 700) < 100) mode = menu;
+  }
 }
 
 void mouseReleased() {
-
+  //elementary, secondary, undergrad, master , phd
   if ( mode == menu) {
+    if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 -25 && mouseY < height/2 + 125) {
+      if (elementary == true || secondary == true|| undergrad == true|| master == true || phd == true) {
+        startw = 300;
+        starth = 150;
+        mode = game;
+      }
+    }
     if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 -25 && mouseY < height/2 + 125) {
       startw = 300;
       starth = 150;
-      mode = game;
     }
   }
 }

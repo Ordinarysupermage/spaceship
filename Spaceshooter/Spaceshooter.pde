@@ -22,10 +22,11 @@ color green = #00FF00;
 
 boolean upkey, downkey, leftkey, rightkey, spacekey, cheat;
 boolean elementarycomp, secondarycomp, undergradcomp, mastercomp, phdcomp;
-boolean tubaselect, fluteselect, medic, morebullet, fastmove;
+boolean tubaselect, fluteselect, medic, morebullet, fastmove, freeze, teleport, sheild;
+boolean gamebeaten, medicpressed;
 
 PImage stapler, paperclip, zerg, protoss, spaceship1, spaceship2, supership, missile, missile2, coin, explosion, start, tuba, flute;
-PImage medicicon, morebulleticon, fastmoveicon;
+PImage medicicon, morebulleticon, fastmoveicon, sheildicon, teleporticon, freezeicon, menuicon;
 PFont star;
 
 Ship player1;
@@ -41,9 +42,11 @@ void setup() {
   imageMode(CENTER);
   rectMode(CENTER);
   
-  mode  = shop;
+  mode  = menu;
+  score = 10000;
   
   upkey = downkey = leftkey = rightkey = spacekey = elementary = secondary = undergrad= master= phd= phdspawn= false;
+  tubaselect = fluteselect = medic = morebullet = fastmove = freeze = teleport = sheild = false;
   stapler = loadImage( "stapler.png");
   paperclip = loadImage( "paperclip.png");
   zerg = loadImage( "zerg.png");
@@ -61,6 +64,10 @@ void setup() {
   medicicon = loadImage("medic.png");
   morebulleticon = loadImage("bullet.png");
   fastmoveicon = loadImage("run.png");
+  sheildicon = loadImage("sheild.png");
+  teleporticon = loadImage("teleport.png");
+  freezeicon = loadImage("freeze.png");
+  menuicon = loadImage("menu.png");
   
   
   objects = new ArrayList<GameObject>();
@@ -84,5 +91,4 @@ void draw() {
   else if ( mode == pause) pause();
   else if ( mode == menu) menu();
   else if ( mode == shop) shop();
-  else if ( mode == backpack) backpack();
 }
