@@ -47,7 +47,7 @@ class EnemyBulletProtoss extends GameObject {
 
   int powerup;
   EnemyBulletProtoss(float x, float y, float vx, float vy) {
-    super( x, y, vx, vy, 1`);
+    super( x, y, vx, vy, 1);
     w = 50;
     h = 50;
     cooldown = threshold;

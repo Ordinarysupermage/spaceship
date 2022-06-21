@@ -1,5 +1,18 @@
 void menu() {
   background(0);
+  player1.x = width/2;
+  player1.y = 700;
+  player1.vx = 0;
+  player1.vy= 0;
+  player1.sizew = 30;
+  player1.sizeh = 60;
+  player1.c = #FF0000;
+  player1.live = 50;
+  player1.threshold = player1.thresholdnumber;
+  player1.thresholdnumber = 5;
+  player1.cooldown = player1.threshold;
+  player1.mediccooldown = player1.medicthreshold;
+  player1.medicthreshold = 2000;
 
   textAlign(CENTER, CENTER);
   textSize(50);
@@ -81,11 +94,11 @@ void menu() {
     strokeWeight(2);
   }
   rect(150, 700, 150, 75);
-  
+
   fill(255);
   textSize(37);
   text("shop", 150, 690);
-  
+
   image(start, width/2, height/2+50, startw, starth);
 }
 

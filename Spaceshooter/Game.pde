@@ -1,5 +1,4 @@
 void game() {
-
   if ( elementary == true) {
     if (frameCount % 200 == 0) objects.add(new Zerg());
   }
@@ -23,13 +22,13 @@ void game() {
   }
 
   if ( phd == true && phdspawn == false) {
-   objects.add(new Supership());
-   phdspawn = true;    
+    objects.add(new Supership());
+    phdspawn = true;
   }
-  
-  
-  
-  
+
+
+
+
   objects.add(new Stars());
   background(0);
 
@@ -46,12 +45,25 @@ void game() {
   }
   player1.show();
   player1.act();
-  if ( medic == true) {
-    if ( player1.mediccooldown > player1.medicthreshold) {
+  if ( player1.mediccooldown > player1.medicthreshold) {
+    if ( medic == true) {
       textAlign(CENTER, CENTER);
       textSize(15);
       fill(255);
       text("Med bag ready", 100, 100);
     }
+    if ( teleport == true) {
+      textAlign(CENTER, CENTER);
+      textSize(15);
+      fill(255);
+      text("Teleport ready", 100, 100);
+    }
   }
+
+  fill(255);
+  textSize(15);
+  textAlign(CORNER, CORNER);
+  text("Lives: " + player1.live, 30, 30);
+  text("Money: $" + score, 30, 60);
+  textAlign(CENTER, CENTER);
 }

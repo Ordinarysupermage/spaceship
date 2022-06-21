@@ -10,6 +10,10 @@ void pause() {
 }
 
 void pauseClicked() {
-  if ( int(dist( mouseX, mouseY, width/2 - width/4, height/2 + 50)) < 100) mode = menu;
+  if ( int(dist( mouseX, mouseY, width/2 - width/4, height/2 + 50)) < 100) {
+    mode = menu;
+    upkey = downkey = leftkey = rightkey = spacekey = elementary = secondary = undergrad= master= phd= phdspawn= false;
+    tubaselect = fluteselect = medic = morebullet = fastmove = freeze = teleport = sheild = false;
+  }
   if ( int(dist( mouseX, mouseY, width/2 + 250, height/2 +20)) < 150) mode = game;
 }

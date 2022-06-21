@@ -20,6 +20,14 @@ void keyPressed() {
         }
       }
     }
+
+    if (mode == game && teleport == true) {
+      if (player1.mediccooldown > player1.medicthreshold) {
+        player1.x = mouseX;
+        player1.y = mouseY;
+        player1.mediccooldown = 0;
+      }
+    }
   }
 }
 

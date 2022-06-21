@@ -1,6 +1,6 @@
 class Ship extends GameObject {
 
-  int live, mediccooldown, medicthreshold;
+  int live, mediccooldown, medicthreshold, shieldcooldown, shieldthreshold;
   int thresholdnumber;
   Ship() {
     x = width/2;
