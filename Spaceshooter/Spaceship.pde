@@ -11,7 +11,7 @@ class Ship extends GameObject {
     sizew = 30;
     sizeh = 60;
     c = #FF0000;
-    live = 3;
+    live = 50;
     threshold = thresholdnumber;
     thresholdnumber = 5;
     cooldown = threshold;
@@ -19,7 +19,7 @@ class Ship extends GameObject {
 
   void act () {
     super.act();
-    println(live);
+    //println(score);
     cooldown++;
     int i = 0;
     while ( i < objects.size()) {

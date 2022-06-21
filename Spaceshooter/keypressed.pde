@@ -26,9 +26,32 @@ void keyReleased() {
 
 
 void mousePressed() {
- 
+  //image(start, width/2, height/2+50, 300, 150);
+
   if (mode == menu) {
     menuSelect();
+    
+    if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 -25 && mouseY < height/2 + 125) {
+      startw = 250;
+      starth = 125;
+
+    }
+    
+    if ( mouseX > 75 && mouseX < 225 && mouseY > 662 && mouseY < 738) {
+      mode = shop;
+    }
   }
   
+  
+}
+
+void mouseReleased() {
+
+  if ( mode == menu) {
+    if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 -25 && mouseY < height/2 + 125) {
+      startw = 300;
+      starth = 150;
+      mode = game;
+    }
+  }
 }

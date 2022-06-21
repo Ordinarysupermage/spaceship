@@ -22,7 +22,7 @@ void game() {
     if (frameCount % 7000 == 0) objects.add(new Spaceship2());
   }
 
-  if ( phd = true && phdspawn == false) {
+  if ( phd == true && phdspawn == false) {
    objects.add(new Supership());
    phdspawn = true;    
   }

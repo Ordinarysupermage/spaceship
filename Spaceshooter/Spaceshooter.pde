@@ -1,3 +1,5 @@
+import processing.video.*;
+
 //Jerry Feng
 //2-3
 //2022-05-30
@@ -12,7 +14,7 @@ final int gameover = 4;
 final int shop = 5;
 final int backpack = 6;
 
-int score;
+int score, introcounter, startw, starth, shopcoin;
 boolean elementary, secondary, undergrad, master , phd, phdspawn;
 
 color red = #FF0000;
@@ -20,11 +22,17 @@ color green = #00FF00;
 
 boolean upkey, downkey, leftkey, rightkey, spacekey, cheat;
 boolean elementarycomp, secondarycomp, undergradcomp, mastercomp, phdcomp;
+boolean tubaselect, fluteselect, medic, morebullet, fastmove;
 
-PImage stapler, paperclip, zerg, protoss, spaceship1, spaceship2, supership, missile, missile2;
+PImage stapler, paperclip, zerg, protoss, spaceship1, spaceship2, supership, missile, missile2, coin, explosion, start, tuba, flute;
+PImage medicicon, morebulleticon, fastmoveicon;
+PFont star;
 
 Ship player1;
 Zerg z1, z2, z3;
+
+Movie movie;
+
 
 ArrayList<GameObject> objects; 
 
@@ -33,7 +41,7 @@ void setup() {
   imageMode(CENTER);
   rectMode(CENTER);
   
-  mode  = game;
+  mode  = shop;
   
   upkey = downkey = leftkey = rightkey = spacekey = elementary = secondary = undergrad= master= phd= phdspawn= false;
   stapler = loadImage( "stapler.png");
@@ -45,12 +53,26 @@ void setup() {
   supership = loadImage("supership.png");
   missile = loadImage("missile.png");
   missile2 = loadImage("missile2.png");
+  coin = loadImage("coin.png");
+  explosion = loadImage("explosion.png");
+  start = loadImage("start.png");
+  tuba = loadImage("tuba.png");
+  flute = loadImage("flute.png");
+  medicicon = loadImage("medic.png");
+  morebulleticon = loadImage("bullet.png");
+  fastmoveicon = loadImage("run.png");
+  
   
   objects = new ArrayList<GameObject>();
   player1 = new Ship();
   objects.add(player1);
-  phd = true;
- 
+  movie = new Movie( this, "Intro.mp4");
+  
+  star = createFont("star.TTF", 70);
+  textFont(star);
+  
+  startw = 300;
+  starth = 150;
 
 }
 

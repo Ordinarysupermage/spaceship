@@ -2,13 +2,13 @@ void menu() {
   background(0);
 
   textAlign(CENTER, CENTER);
-  textSize(100);
+  textSize(50);
   fill(255);
-  text("Paper Clip school", width/2, 50);
-  textSize( 50);
+  text("Paper Clip Space Journey", width/2, 50);
+  textSize( 30);
   text("Levels:", 100, 200);
   rectMode(CENTER);
-  textSize(20);
+  textSize(13);
   stroke(255);
   fill(255);
   if ( mouseX > 200 && mouseX < 300 && mouseY > 185 && mouseY < 235) {
@@ -82,8 +82,11 @@ void menu() {
   }
   rect(150, 700, 150, 75);
   
-  fill(0);
-  text("shop", 150, 700);
+  fill(255);
+  textSize(37);
+  text("shop", 150, 690);
+  
+  image(start, width/2, height/2+50, startw, starth);
 }
 
 

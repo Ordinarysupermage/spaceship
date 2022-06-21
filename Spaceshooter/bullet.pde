@@ -45,12 +45,14 @@ class EnemyBulletZerg extends GameObject {
 
 class EnemyBulletProtoss extends GameObject {
 
+  int powerup;
   EnemyBulletProtoss(float x, float y, float vx, float vy) {
-    super( x, y, vx, vy, 1);
+    super( x, y, vx, vy, 1`);
     w = 50;
     h = 50;
     cooldown = threshold;
     threshold = 180;
+    powerup = 0;
   }
 
   void act() {
@@ -74,11 +76,18 @@ class EnemyBulletProtoss extends GameObject {
           live = 0;
           bullet.live = 0;
           score += 1;
+          powerup = int(random(1, 7));
+          if ( live == 0) {
+            objects.add(new Explosion( x, y, 0, 0));
+          }
         }
       }
 
 
       i++;
+    }
+    if (powerup == 3) {
+      objects.add(new Coin( x, y, 0, 0.1));
     }
   }
   void show() {
@@ -89,12 +98,15 @@ class EnemyBulletProtoss extends GameObject {
 
 class EnemyBulletSpaceship1 extends GameObject {
 
+  int powerup;
+
   EnemyBulletSpaceship1(float x, float y, float vx, float vy) {
-    super( x, y, vx, vy, 2);
+    super( x, y, vx, vy, 5);
     w = 50;
     h = 50;
     cooldown = threshold;
     threshold = 180;
+    powerup = 0;
   }
 
   void act() {
@@ -118,11 +130,18 @@ class EnemyBulletSpaceship1 extends GameObject {
           live = 0;
           bullet.live = 0;
           score +=1;
+          powerup = int(random(1, 7));
+          if ( live == 0) {
+            objects.add(new Explosion( x, y, 0, 0));
+          }
         }
       }
 
 
       i++;
+    }
+    if (powerup == 3) {
+      objects.add(new Coin( x, y, 0, 0.1));
     }
   }
   void show() {
@@ -158,6 +177,9 @@ class EnemyBulletMissile1 extends GameObject {
       //remove enemy???
       live = 0;
       player1.live -= 10;
+      if ( live == 0) {
+        objects.add(new Explosion( x, y, 0, 0));
+      }
     }
   }
 
@@ -189,6 +211,9 @@ class EnemyBulletMissile2 extends GameObject {
     if ( collidingwith(player1)) {
       live = 0;
       player1.live -= 10;
+      if ( live == 0) {
+        objects.add(new Explosion( x, y, 0, 0));
+      }
     }
   }
 
@@ -251,5 +276,58 @@ class Lazer2 extends GameObject {
     stroke(green);
     strokeWeight(10);
     line(x, y, x, finaly);
+  }
+}
+
+class Coin extends GameObject {
+
+  Coin(float x, float y, float vx, float vy) {
+    super(x, y, vx, vy, 1);
+    w = 30;
+    h = 30;
+  }
+
+  void act() {
+    super.act();
+
+    if ( collidingwith(player1)) {
+      live = 0;
+      shopcoin += 1;
+    }
+  }
+
+  void show() {
+    image(coin, x, y, w, h);
+  }
+}
+
+class Explosion extends GameObject {
+
+  int counter;
+
+  Explosion(float x, float y, float vx, float vy) {
+    super(x, y, vx, vy, 1);
+    w = 30;
+    h = 30;
+    counter = 0;
+  }
+
+  void act() {
+    counter++;
+    //println("0");
+
+    if ( collidingwith(player1)) {
+      player1.live -= 1;
+    }
+
+    if ( counter > 30) {
+      live = 0;
+    }
+    w++;
+    h++;
+  }
+
+  void show() {
+    image(explosion, x, y, w, h);
   }
 }

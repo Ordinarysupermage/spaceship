@@ -2,6 +2,7 @@ int zergHit;
 
 class Zerg extends GameObject {
 
+  int powerup;
   Zerg() {
     x = random( 30, width - 30);
     y = random( -100, -50);
@@ -12,6 +13,7 @@ class Zerg extends GameObject {
     h = 50;
     cooldown = threshold;
     threshold = 120;
+    powerup = 0;
   }
 
   void act() {
@@ -35,11 +37,19 @@ class Zerg extends GameObject {
           live = 0;
           bullet.live = 0;
           score += 1;
+          powerup = int(random(1, 3));
         }
       }
 
 
       i++;
+    }
+    if ( live == 0) {
+      objects.add(new Explosion( x, y, 0, 0));
+    }
+
+    if (powerup == 3) {
+      objects.add(new Coin( x, y, 0, 0.1));
     }
   }
 
@@ -52,6 +62,8 @@ class Zerg extends GameObject {
 
 class Protoss extends GameObject {
 
+  int powerup;
+
   Protoss() {
     x = random( 30, width - 30);
     y = random( -100, -50);
@@ -62,6 +74,7 @@ class Protoss extends GameObject {
     h = 50;
     cooldown = threshold;
     threshold = 360;
+    powerup = 0;
   }
 
   void act() {
@@ -85,11 +98,19 @@ class Protoss extends GameObject {
           live -= 1;
           bullet.live = 0;
           score += 1;
+          if ( live == 0) {
+            objects.add(new Explosion( x, y, 0, 0));
+            powerup = int(random(1, 3));
+          }
         }
       }
 
 
       i++;
+    }
+
+    if (powerup == 3) {
+      objects.add(new Coin( x, y, 0, 0.1));
     }
   }
 
@@ -270,7 +291,7 @@ class Supership extends GameObject {
       objects.add(new EnemyBulletSpaceship1( player1.x, -50, 0, 1));
       cooldown = 0;
     }
-    
+
     if ( cooldown2 >= threshold2) {
       objects.add(new Spaceship1());
       cooldown2 = 0;
@@ -280,23 +301,23 @@ class Supership extends GameObject {
       objects.add(new EnemyBulletMissile1( player1.x, -10, 0, 5));
       missileCooldown = 0;
     }
-    
+
     if (lazercooldown > lazerthreshold) {
-      objects.add(new Lazer(random(100, 1100), -10, 0 , 10));
+      objects.add(new Lazer(random(100, 1100), -10, 0, 10));
       lazercooldown = 0;
     }
-    
+
     if (lazercooldown > lazerthreshold) {
-      objects.add(new Lazer(random(100, 1100), -10, 0 , 10));
+      objects.add(new Lazer(random(100, 1100), -10, 0, 10));
       lazercooldown = 0;
     }
-    
+
     if (lazer2 > lazerthres2) {
       stroke(green);
       objects.add(new Lazer2(x, y+20, 0, 5));
       lazer2 = 0;
     }
-    
+
     if (trackingcooldown > trackingthreshold) {
       objects.add(new EnemyBulletMissile2(-50, random( player1.y - 20, player1.y + 20), 15, 0));
       trackingcooldown = 0;
