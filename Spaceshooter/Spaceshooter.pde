@@ -1,3 +1,10 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 import processing.video.*;
 
 //Jerry Feng
@@ -27,9 +34,11 @@ boolean tubaselect, fluteselect, medic, morebullet, fastmove, freeze, teleport, 
 boolean gamebeaten, medicpressed, flutepurchased, tubapurchased;
 
 PImage stapler, paperclip, zerg, protoss, spaceship1, spaceship2, supership, missile, missile2, coin, explosion, start, tuba, flute;
-PImage medicicon, morebulleticon, fastmoveicon, sheildicon, teleporticon, freezeicon, menuicon;
+PImage medicicon, morebulleticon, fastmoveicon, sheildicon, teleporticon, freezeicon, menuicon, fighter;
 PFont star;
 
+Minim minim;
+AudioPlayer button;
 
 Ship player1;
 Zerg z1, z2, z3;
@@ -46,6 +55,7 @@ void setup() {
 
   mode  = shop;
   score = 1000000;
+  shopcoin = 100000;
 
   upkey = downkey = leftkey = rightkey = spacekey = elementary = secondary = undergrad= master= phd= phdspawn= false;
   tubaselect = fluteselect = medic = morebullet = fastmove = freeze = teleport = sheild = false;
@@ -70,7 +80,10 @@ void setup() {
   teleporticon = loadImage("teleport.png");
   freezeicon = loadImage("freeze.png");
   menuicon = loadImage("menu.png");
+  fighter = loadImage("fighter.png");
 
+  minim = new Minim(this);
+  button = minim.loadFile("button.wav");
 
   objects = new ArrayList<GameObject>();
   player1 = new Ship();

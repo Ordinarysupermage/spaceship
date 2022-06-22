@@ -6,8 +6,8 @@ void shop() {
   strokeWeight(2);
   textSize(20);
   textAlign(CORNER, CORNER);
-  text("Money: " + score, 20, 50);
-  text("Gems: " + shopcoin, 20, 100);
+  text("Money: $ " + score, 20, 50);
+  text("Gems: $ " + shopcoin, 20, 100);
   textAlign(CENTER, CENTER);
   text("Q key: $500 each", 120, 250);
   text("E key: $1,000 each", 120, 380);

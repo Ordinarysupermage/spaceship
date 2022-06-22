@@ -58,6 +58,8 @@ void keyReleased() {
 
 
 void mousePressed() {
+  button.play();
+  button.rewind();
   //image(start, width/2, height/2+50, 300, 150);
   if (mode == pause) {
     pauseClicked();
@@ -92,11 +94,17 @@ void mouseReleased() {
         startw = 300;
         starth = 150;
         mode = game;
+        if ( tubaselect == true && fluteselect == true) {
+          player1.live = 10000;
+        }
+        if ( tubaselect == true) {
+          player1.live = 1000;
+        }
       }
-    }
-    if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 -25 && mouseY < height/2 + 125) {
-      startw = 300;
-      starth = 150;
+      if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > height/2 -25 && mouseY < height/2 + 125) {
+        startw = 300;
+        starth = 150;
+      }
     }
   }
 }

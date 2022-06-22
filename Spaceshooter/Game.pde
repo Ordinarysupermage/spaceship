@@ -25,7 +25,9 @@ void game() {
     objects.add(new Supership());
     phdspawn = true;
   }
-
+  if ( cheat == true) {
+    player1.live = 100;
+  }
 
 
 

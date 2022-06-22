@@ -128,11 +128,26 @@ class Ship extends GameObject {
         vx = 10;
       }
     }
-    if (spacekey && cooldown >= threshold ) {
-      objects.add(new Bullet(x, y, 0 ,-10));
+    if (spacekey && cooldown >= threshold && !tubaselect && !fluteselect) {
+      objects.add(new Bullet(x, y, 0, -10));
       cooldown = 0;
     }
     if (spacekey && cooldown >= threshold && tubaselect == true && fluteselect == true) {
+      objects.add(new Bullet(x - 20, y, 0, -10));
+      objects.add(new Bullet(x -10, y, 0, -10));
+      objects.add(new Bullet(x, y, 0, -10));
+      objects.add(new Bullet(x + 10, y, 0, -10));
+      objects.add(new Bullet(x + 20, y, 0, -10));
+      cooldown = 0;
+    }
+    if ( spacekey && cooldown >= threshold && fluteselect == true) {
+      objects.add(new Bullet(x -10, y, 0, -10));
+      objects.add(new Bullet(x, y, 0, -10));
+      objects.add(new Bullet(x + 10, y, 0, -10));
+    }
+    if ( spacekey && cooldown >= threshold && tubaselect == true) {
+      objects.add(new Bullet(x -5, y, 0, -10));
+      objects.add(new Bullet(x + 5, y, 0, -10));
     }
 
     if (!morebullet) {
@@ -148,7 +163,17 @@ class Ship extends GameObject {
       threshold = 0;
     } else threshold = thresholdnumber;
     if ( fluteselect == true && tubaselect == true) {
-      threshold = 0;
+      threshold = 10;
+      teleport = true;
+      freeze = true;
+    }
+    if ( fluteselect == true) {
+      threshold = 10;
+      teleport = true;
+    }
+    if ( tubaselect == true) {
+      threshold = 20;
+      freeze = true;
     }
   }
 
@@ -156,6 +181,10 @@ class Ship extends GameObject {
   void show() {
 
     fill(c);
-    image(stapler, x, y, sizew, sizeh);
+    if ( tubaselect == true && fluteselect == true) {
+      image(fighter, x, y, sizew, sizeh);
+    } else {
+      image(stapler, x, y, sizew, sizeh);
+    }
   }
 }

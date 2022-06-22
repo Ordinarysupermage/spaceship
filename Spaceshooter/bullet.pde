@@ -14,7 +14,9 @@ class Bullet extends GameObject {
 
   void act() {
     //super.act();
-
+    if ( y < 10) {
+      live = 0;
+    }
     y -=5;
     //if (x < 0 || x > width || y < 0 || y > height) lives = 0;
   }
