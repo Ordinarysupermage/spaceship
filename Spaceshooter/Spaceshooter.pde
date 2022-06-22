@@ -52,6 +52,8 @@ void setup() {
   fullScreen();
   imageMode(CENTER);
   rectMode(CENTER);
+  score = 100000;
+  shopcoin = 100000;
   
   mode  = intro;
 

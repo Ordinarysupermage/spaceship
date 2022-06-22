@@ -1,6 +1,6 @@
 void intro() {
   introcounter++;
-  if (introcounter > 1200) {
+  if (introcounter > 1200 || mousePressed) {
     mode = menu;
   }
   imageMode(CORNER);

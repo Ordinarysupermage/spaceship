@@ -73,7 +73,7 @@ void shopselect() {
   }
 
   if ( dist( mouseX, mouseY, 300, 250) < 50) {
-    if ( score > 500) {
+    if ( score >= 500) {
       medic = true;
       fastmove = false;
       teleport = false;
@@ -81,7 +81,7 @@ void shopselect() {
     }
   }
   if ( dist( mouseX, mouseY, 600, 250) < 50) {
-    if ( score > 500) {
+    if ( score >= 500) {
       medic = false;
       fastmove = true;
       teleport = false;
@@ -89,7 +89,7 @@ void shopselect() {
     }
   }
   if ( dist( mouseX, mouseY, 900, 250) < 50) {
-    if ( score > 500) {
+    if ( score >= 500) {
       medic = false;
       fastmove = false;
       teleport = true;
@@ -97,7 +97,7 @@ void shopselect() {
     }
   }
   if ( dist( mouseX, mouseY, 300, 380) < 50) {
-    if ( score > 1000) {
+    if ( score >= 1000) {
       morebullet = true;
       sheild = false;
       freeze = false;
@@ -105,7 +105,7 @@ void shopselect() {
     }
   }
   if ( dist( mouseX, mouseY, 600, 380) < 50) {
-    if ( score > 500) {
+    if ( score >= 500) {
       morebullet = false;
       sheild = true;
       freeze = false;
@@ -113,7 +113,7 @@ void shopselect() {
     }
   }
   if ( dist( mouseX, mouseY, 900, 380) < 50) {
-    if ( score > 500) {
+    if ( score >= 500) {
       morebullet = false;
       sheild = false;
       freeze = true;
@@ -121,13 +121,13 @@ void shopselect() {
     }
   }
   if ( dist( mouseX, mouseY, 300, 650) < 150) {
-    if ( shopcoin > 500) {
+    if ( shopcoin >= 500) {
       fluteselect = true;
       shopcoin -= 500;
     }
   }
   if ( dist( mouseX, mouseY, 900, 650) < 150) {
-    if ( shopcoin > 500) {
+    if ( shopcoin >= 500) {
       tubaselect = true;
       shopcoin -= 500;
     }
