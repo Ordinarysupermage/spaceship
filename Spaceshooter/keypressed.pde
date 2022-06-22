@@ -15,17 +15,30 @@ void keyPressed() {
     if (mode == game && medic == true) {
       if (player1.mediccooldown > player1.medicthreshold) {
         if ( player1.live < 30) {
-          player1.live += 2;
+          player1.live += 10;
           player1.mediccooldown = 0;
         }
       }
     }
 
     if (mode == game && teleport == true) {
-      if (player1.mediccooldown > player1.medicthreshold) {
+      if (player1.mediccooldown > player1.medicthreshold - 800) {
         player1.x = mouseX;
         player1.y = mouseY;
         player1.mediccooldown = 0;
+      }
+    }
+  }
+  if (keyCode == 'E') {
+    if (mode == game && sheild == true) {
+      if (player1.sheildcooldown > player1.sheildthreshold) {
+        sheildactivate = true;
+        player1.sheildcooldown = 0;
+      }
+    }
+    if (mode == game && freeze == true) {
+      if (player1.sheildcooldown > player1.sheildthreshold) {
+        freezeactivate = true;
       }
     }
   }
@@ -67,7 +80,7 @@ void mousePressed() {
   }
 
   if ( mode == gameover) {
-    if ( dist( mouseX, mouseY, 100, 700) < 100) mode = menu;
+    if ( dist( mouseX, mouseY, 100, 700) < 100) setup();
   }
 }
 

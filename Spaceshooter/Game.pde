@@ -60,10 +60,29 @@ void game() {
     }
   }
 
+  if ( player1.sheildcooldown > player1.sheildthreshold) {
+    if ( sheild == true) {
+      textAlign(CENTER, CENTER);
+      textSize(15);
+      fill(255);
+      text("Sheild ready", 100, 130);
+    }
+    if ( freeze == true) {
+      textAlign(CENTER, CENTER);
+      textSize(15);
+      fill(255);
+      text("Freeze ray ready", 100, 130);
+    }
+  }
+
+
   fill(255);
   textSize(15);
   textAlign(CORNER, CORNER);
   text("Lives: " + player1.live, 30, 30);
   text("Money: $" + score, 30, 60);
   textAlign(CENTER, CENTER);
+  if ( player1.live <= 0) {
+    mode = gameover;
+  }
 }

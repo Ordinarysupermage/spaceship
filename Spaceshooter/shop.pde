@@ -3,8 +3,8 @@ void shop() {
   textSize(100);
   textAlign(CENTER, CENTER);
   text("Shop", width/2, 100);
-
-  textSize(15);
+  strokeWeight(2);
+  textSize(20);
   textAlign(CORNER, CORNER);
   text("Money: " + score, 20, 50);
   text("Gems: " + shopcoin, 20, 100);
@@ -19,7 +19,10 @@ void shop() {
   if ( dist( mouseX, mouseY, 300, 380) < 50) circle(300, 380, 100);
   if ( dist( mouseX, mouseY, 600, 380) < 50) circle(600, 380, 100);
   if ( dist( mouseX, mouseY, 900, 380) < 50) circle(900, 380, 100);
+  if ( dist( mouseX, mouseY, 300, 650) < 150) circle( 300, 650, 275);
+  if ( dist( mouseX, mouseY, 900, 650) < 150) circle( 900, 650, 275);
 
+  stroke(255);
   if (medic == true) {
     circle(300, 250, 100);
   }
@@ -38,6 +41,13 @@ void shop() {
   if ( freeze == true) {
     circle(900, 380, 100);
   }
+  if ( fluteselect == true) {
+    stroke(255);
+    circle( 300, 650, 275);
+  }
+  if ( tubaselect == true) {
+    circle( 900, 650, 275);
+  }
 
   image( medicicon, 300, 250, 100, 50);
   image( fastmoveicon, 600, 250, 100, 50);
@@ -51,6 +61,9 @@ void shop() {
   image( flute, 300, 650, 300, 150);
   image( tuba, 900, 650, 200, 200);
   image( menuicon, 50, 750, 75, 75);
+  textSize(30);
+  text("500 gems", 300, 750);
+  text("500 gems", 900, 750);
 }
 
 void shopselect() {
@@ -107,4 +120,28 @@ void shopselect() {
       score -= 1000;
     }
   }
+  if ( dist( mouseX, mouseY, 300, 650) < 150) {
+    if ( shopcoin > 500) {
+      fluteselect = true;
+      shopcoin -= 500;
+    }
+  }
+  if ( dist( mouseX, mouseY, 900, 650) < 150) {
+    if ( shopcoin > 500) {
+      tubaselect = true;
+      shopcoin -= 500;
+    }
+  }
+  //if ( fluteselect == true && dist( mouseX, mouseY, 300, 650) < 150) {
+  //  fluteselect = false;
+  //}
+  //if ( tubaselect == true && dist( mouseX, mouseY, 900, 650) < 150) {
+  //  tubaselect = false;
+  //}
+  //if ( dist( mouseX, mouseY, 300, 650) < 150 && flutepurchased == true) {
+  //  fluteselect = true;
+  //}
+  //if ( dist( mouseX, mouseY, 900, 650) < 150 && tubapurchased == true) {
+  //  tubaselect = true;
+  //}
 }

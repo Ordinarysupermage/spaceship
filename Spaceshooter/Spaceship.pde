@@ -1,7 +1,8 @@
 class Ship extends GameObject {
 
-  int live, mediccooldown, medicthreshold, shieldcooldown, shieldthreshold;
+  int live, mediccooldown, medicthreshold, sheildcooldown, sheildthreshold;
   int thresholdnumber;
+  int sheildtime;
   Ship() {
     x = width/2;
     y = 700;
@@ -14,8 +15,10 @@ class Ship extends GameObject {
     threshold = thresholdnumber;
     thresholdnumber = 5;
     cooldown = threshold;
-    mediccooldown = medicthreshold;
     medicthreshold = 2000;
+    mediccooldown = medicthreshold;
+    sheildthreshold = 3000;
+    sheildcooldown = sheildthreshold;
   }
 
   void act () {
@@ -23,16 +26,29 @@ class Ship extends GameObject {
     //println(score);
     cooldown++;
     mediccooldown++;
-      
+    sheildcooldown++;
+
+    if ( sheildactivate) {
+      sheildtime ++;
+    }
+
+    if ( sheildtime > 60) {
+      sheildtime = 0;
+      sheildcooldown = 0;
+      sheildactivate = false;
+    }
+
     int i = 0;
     while ( i < objects.size()) {
       GameObject bullet = objects.get(i);
       if (bullet instanceof EnemyBulletZerg) {
         if ( collidingwith(bullet)) {
-          live -= 1;
-          bullet.live = 0;
-          if ( live == 0) {
-            mode = gameover;
+          if (!sheildactivate) {
+            live -= 1;
+            bullet.live = 0;
+          }
+          if (sheildactivate) {
+            live += 1;
           }
         }
       }
@@ -62,6 +78,9 @@ class Ship extends GameObject {
       if ( y < 30 ) {
         vy = 0;
       }
+      if ( fluteselect == true || tubaselect == true) {
+        vy = -10;
+      }
     }
     if (downkey) {
       if (y < height -30) {
@@ -69,6 +88,9 @@ class Ship extends GameObject {
           vy = 2;
         } else {
           vy = 5;
+        }
+        if ( fluteselect == true || tubaselect == true) {
+          vy = 10;
         }
       }
 
@@ -87,6 +109,9 @@ class Ship extends GameObject {
       if ( x < 20) {
         vx = 0;
       }
+      if ( fluteselect == true || tubaselect == true) {
+        vx = -10;
+      }
     }
     if (rightkey) {
       if (x < width - 20) {
@@ -99,13 +124,19 @@ class Ship extends GameObject {
       if ( x > width - 20) {
         vx = 0;
       }
+      if ( fluteselect == true || tubaselect == true) {
+        vx = 10;
+      }
     }
     if (spacekey && cooldown >= threshold ) {
-      objects.add(new Bullet());
+      objects.add(new Bullet(x, y, 0 ,-10));
       cooldown = 0;
     }
+    if (spacekey && cooldown >= threshold && tubaselect == true && fluteselect == true) {
+    }
+
     if (!morebullet) {
-      thresholdnumber = 60;
+      thresholdnumber = 30;
     } else {
       thresholdnumber = 5;
     }
@@ -116,6 +147,9 @@ class Ship extends GameObject {
       y = mouseY;
       threshold = 0;
     } else threshold = thresholdnumber;
+    if ( fluteselect == true && tubaselect == true) {
+      threshold = 0;
+    }
   }
 
   //object.s

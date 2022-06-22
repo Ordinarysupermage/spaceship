@@ -44,6 +44,12 @@ class Zerg extends GameObject {
 
       i++;
     }
+
+    if (freezeactivate == true) {
+      live = 0;
+      player1.sheildcooldown = 0;
+      freezeactivate = false;
+    }
     if ( live == 0) {
       objects.add(new Explosion( x, y, 0, 0));
     }
@@ -97,8 +103,8 @@ class Protoss extends GameObject {
           //remove enemy???
           live -= 1;
           bullet.live = 0;
-          score += 1;
           if ( live == 0) {
+            score += 1;
             objects.add(new Explosion( x, y, 0, 0));
             powerup = int(random(1, 3));
           }
@@ -107,6 +113,12 @@ class Protoss extends GameObject {
 
 
       i++;
+    }
+
+    if (freezeactivate == true) {
+      live = 0;
+      player1.sheildcooldown = 0;
+      freezeactivate = false;
     }
 
     if (powerup == 3) {
@@ -122,6 +134,7 @@ class Protoss extends GameObject {
 
 class Spaceship1 extends GameObject {
 
+  int powerup;
   int bulletraincooldown, threshold2, bulletcounter;
 
   Spaceship1() {
@@ -138,6 +151,7 @@ class Spaceship1 extends GameObject {
     threshold = 5000;
     threshold = 540;
     bulletcounter = 0;
+    powerup = 0;
   }
 
   void act() {
@@ -171,12 +185,21 @@ class Spaceship1 extends GameObject {
           //remove enemy???
           live -= 1;
           bullet.live = 0;
-          score += 1;
+
+          if ( live == 0) {
+            score += 1;
+            objects.add(new Explosion( x, y, 0, 0));
+            powerup = int(random(1, 2));
+          }
         }
       }
 
 
       i++;
+
+      if (powerup == 1) {
+        objects.add(new Coin( x, y, 0, 0.1));
+      }
     }
   }
 
@@ -190,6 +213,7 @@ class Spaceship1 extends GameObject {
 class Spaceship2 extends GameObject {
 
   int missileCooldown, missilethreshold;
+  int powerup;
 
   Spaceship2() {
 
@@ -204,6 +228,7 @@ class Spaceship2 extends GameObject {
     threshold = 30;
     missileCooldown = missilethreshold;
     missilethreshold = 120;
+    powerup = 0;
   }
 
   void act() {
@@ -235,13 +260,21 @@ class Spaceship2 extends GameObject {
           //remove enemy???
           live -= 1;
           bullet.live = 0;
-          score += 1;
+          if ( live == 0) {
+            score += 1;
+            objects.add(new Explosion( x, y, 0, 0));
+            powerup = int(random(1, 2));
+          }
         }
       }
 
 
 
       i++;
+
+      if (powerup == 1) {
+        objects.add(new Coin( x, y, 0, 0.1));
+      }
     }
   }
 
@@ -261,7 +294,7 @@ class Supership extends GameObject {
     y = 150;
     vx = 0;
     vy = 0;
-    live = 500;
+    live = 1000;
     w = 300;
     h = 300;
     cooldown = threshold;

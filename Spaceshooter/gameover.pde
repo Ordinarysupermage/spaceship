@@ -7,7 +7,7 @@ void gameover() {
     image( menuicon, 100, 700, 100, 100);
   } else {
     textSize(100);
-    text("Mission Failed", width/2, height/2);
+    text("Gameover", width/2, height/2);
     image( menuicon, 100, 700, 100, 100);
   }
 }

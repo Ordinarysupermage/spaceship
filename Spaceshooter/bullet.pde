@@ -1,14 +1,15 @@
 class Bullet extends GameObject {
 
-  Bullet() {
-    x = player1.x;
-    y = player1.y;
-    vx = 0;
-    vy = -10;
+  Bullet(float x, float y, float vx, float vy) {
+    super(x, y, vx, vy, 1);
+    //x = player1.x;
+    //y = player1.y;
+    //vx = 0;
+    //vy = -10;
     sizew = 10;
     sizeh = 20;
     c = 225;
-    live = 1;
+    //live = 1;
   }
 
   void act() {
@@ -21,6 +22,47 @@ class Bullet extends GameObject {
   void show () {
     //println( x + "    " + y);
     image( paperclip, x, y-30, sizew, sizeh);
+  }
+}
+
+class Missile1 extends GameObject {
+
+  Missile1(float x, float y, float vx, float vy) {
+    super( x, y, vx, vy, 1);
+    w = 50;
+    h = 50;
+    cooldown = threshold;
+    threshold = 180;
+  }
+
+  void act() {
+    super.act();
+    if (y > height + 60) {
+      live = 0;
+    }
+
+
+
+    //if ( collidingwith(Supership)) {
+    //  //remove enemy???
+    //  live = 0;
+    //  if ( fluteselect == true || tubaselect == true) {
+    //    supership.live -= 10;
+    //  }
+    //  if ( fluteselect == true && tubaselect == true) {
+    //    supership.live -= 30;
+    //  }
+    //  if ( live == 0) {
+    //    objects.add(new Explosion( x, y, 0, 0));
+    //  }
+    //}
+  }
+
+
+
+  void show() {
+
+    image(missile, x, y, w, h);
   }
 }
 
@@ -86,6 +128,11 @@ class EnemyBulletProtoss extends GameObject {
 
       i++;
     }
+    if (freezeactivate == true) {
+      live = 0;
+      player1.sheildcooldown = 0;
+      freezeactivate = false;
+    }
     if (powerup == 3) {
       objects.add(new Coin( x, y, 0, 0.1));
     }
@@ -139,6 +186,12 @@ class EnemyBulletSpaceship1 extends GameObject {
 
 
       i++;
+    }
+    if (freezeactivate == true) {
+      println("1");
+      live = 0;
+      player1.sheildcooldown = 0;
+      freezeactivate = false;
     }
     if (powerup == 3) {
       objects.add(new Coin( x, y, 0, 0.1));
