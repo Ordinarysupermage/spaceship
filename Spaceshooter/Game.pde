@@ -83,6 +83,7 @@ void game() {
   textAlign(CORNER, CORNER);
   text("Lives: " + player1.live, 30, 30);
   text("Money: $" + score, 30, 60);
+  text("Gems: " + shopcoin, 30, 90);
   textAlign(CENTER, CENTER);
   if ( player1.live <= 0) {
     mode = gameover;

@@ -49,13 +49,11 @@ Movie movie;
 ArrayList<GameObject> objects;
 
 void setup() {
-  size(1200, 800);
+  fullScreen();
   imageMode(CENTER);
   rectMode(CENTER);
-
-  mode  = shop;
-  score = 1000000;
-  shopcoin = 100000;
+  
+  mode  = intro;
 
   upkey = downkey = leftkey = rightkey = spacekey = elementary = secondary = undergrad= master= phd= phdspawn= false;
   tubaselect = fluteselect = medic = morebullet = fastmove = freeze = teleport = sheild = false;
